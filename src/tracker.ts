@@ -76,6 +76,10 @@ class Tracker {
 
     this.notify(data);
   }
+  
+  clear() {
+    this.elements.clear();
+  }
 
   get(id: string): TrackerData | undefined {
     if (this.elements.get(id)) {

@@ -66,8 +66,12 @@ export class Edge extends Component<EdgeProps, EdgeState> {
       this.setState({ targetData: parentData || undefined });
     });
   }
+  componentWillUnmount() {
+    tracker.clear();
+  }
   render() {
     const { edge } = this.props;
+
     const { sourceData, eventData, targetData } = this.state;
 
     if (

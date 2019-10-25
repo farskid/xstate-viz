@@ -67,7 +67,7 @@ export const EditorRenderer: React.FunctionComponent<EditorProps> = props => {
             keybindings: [
               MonacoEditor.KeyMod.CtrlCmd | MonacoEditor.KeyCode.KEY_R
             ],
-            run: value => {
+            run: (value: string) => {
               if (typeof onSave === "function") {
                 onChange(value);
               }

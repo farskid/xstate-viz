@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { State, Interpreter } from 'xstate';
 import styled from 'styled-components';
+import { getEdges, getEventEdges } from 'xstate/lib/graph';
 
 const StyledField = styled.div`
   &:not(:last-child) {
@@ -79,8 +80,11 @@ export const StatePanel: React.FunctionComponent<{
 }> = ({ state, service }) => {
   const simplifiedState = {
     value: state.value,
-    context: state.context
+    context: state.context,
+    nextMoves: state.nextEvents.map(e => `${e}=>${JSON.stringify(service.nextState(e).value)}`),
+    events: state.event
   };
+
 
   return (
     <StyledDetails key={service.id} open={true}>

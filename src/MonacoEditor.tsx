@@ -75,8 +75,11 @@ export function MonacoEditor(props: MonacoEditorProps) {
             var assign: typeof _XState.assign;
             var spawn: typeof _XState.spawn;
             var send: typeof _XState.send;
+            var raise: typeof _XState.raise;
             var sendParent: typeof _XState.sendParent;
             var matchState: typeof _XState.matchState;
+            var EventObject: typeof _XState.EventObject;
+            var actions: typeof _XState.actions;
           }
         `,
       "file:///global.d.ts"
@@ -162,13 +165,13 @@ export function MonacoEditor(props: MonacoEditorProps) {
     });
 
     return () => {
-      if (editor) {
+      try {if (editor) {
         (editor.getModel() as monaco.IDisposable).dispose();
         editor.dispose();
       }
       if (subscription) {
         subscription.dispose();
-      }
+      }} catch(err) {console.warn(err)}
     };
   }, []);
 
@@ -182,3 +185,9 @@ export function MonacoEditor(props: MonacoEditorProps) {
 
 MonacoEditor.KeyCode = KeyCode;
 MonacoEditor.KeyMod = KeyMod;
+
+
+
+
+
+
